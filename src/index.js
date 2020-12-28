@@ -12,8 +12,11 @@ class Square extends React.Component {
   render() {
     return (
       // タイプ量を減らして this の混乱しやすい挙動を回避するため、この例以降ではアロー関数構文をつかってイベントハンドラを記述します。
-      <button className="square" onClick={function() { alert('click'); }}>
-        {this.props.value}
+      <button
+        className="square"
+        onClick={() => this.setState({value: 'x'})}
+      >
+        {this.state.value}
       </button>
     );
   }
