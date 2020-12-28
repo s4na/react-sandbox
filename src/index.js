@@ -3,10 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
   render() {
     return (
-      <button className="square">
-        {/* TODO */}
+      // タイプ量を減らして this の混乱しやすい挙動を回避するため、この例以降ではアロー関数構文をつかってイベントハンドラを記述します。
+      <button className="square" onClick={function() { alert('click'); }}>
+        {this.props.value}
       </button>
     );
   }
@@ -14,7 +21,7 @@ class Square extends React.Component {
 
 class Board extends React.Component {
   renderSquare(i) {
-    return <Square />;
+    return <Square value={i} />;
   }
 
   render() {
