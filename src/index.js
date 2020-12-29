@@ -3,20 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 class Square extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
-  }
   render() {
     return (
-      // タイプ量を減らして this の混乱しやすい挙動を回避するため、この例以降ではアロー関数構文をつかってイベントハンドラを記述します。
       <button
         className="square"
-        onClick={() => this.setState({value: 'x'})}
+        onClick={() => this.props.onClick()}
       >
-        {this.state.value}
+        {this.props.value}
       </button>
     );
   }
@@ -30,7 +23,12 @@ class Board extends React.Component {
     };
   }
   renderSquare(i) {
-    return <Square value={this.state.squares[i]} />;
+    return (
+      <Square
+        value={this.state.squares[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
   }
 
   render() {
