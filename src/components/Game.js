@@ -60,6 +60,13 @@ export class Game extends React.Component {
 }
 
 class JumpHistory extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      history: this.props.history,
+    };
+  }
+
   jumpTo(step) {
     this.setState({
       stepNumber: step,
@@ -68,7 +75,7 @@ class JumpHistory extends React.Component {
   }
 
   render() {
-    const moves = this.props.history.map((step, move) => {
+    const moves = this.state.history.map((step, move) => {
       const desc = move ?
         'Go to move #' + move :
         'Go to game start';
